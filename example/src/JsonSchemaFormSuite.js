@@ -19,6 +19,7 @@ import Tabs from './tabs/Tabs';
 import JSONInput from 'react-json-editor-ajrm';
 import locale from 'react-json-editor-ajrm/locale/en';
 import ErrorBoundary from './ErrorBoundary';
+import FormWorkflow from './FormWorkflow';
 
 const Form = withTheme(Bootstrap4Theme);
 
@@ -155,17 +156,15 @@ class JsonSchemaFormEditor extends React.Component<Props, State> {
                     height: this.props.height ? this.props.height : '500px',
                   }}
                 >
-                  <ErrorBoundary onErr={() => {}}>
-                    <FormBuilder
-                      schema={this.props.schema}
-                      uischema={this.props.uischema}
-                      mods={this.props.mods}
-                      onChange={(newSchema: string, newUiSchema: string) => {
-                        if (this.props.onChange)
-                          this.props.onChange(newSchema, newUiSchema);
-                      }}
-                    />
-                  </ErrorBoundary>
+                  <FormWorkflow
+                    schema={this.props.schema}
+                    uischema={this.props.uischema}
+                    mods={this.props.mods}
+                    onChange={(newSchema: string, newUiSchema: string) => {
+                      if (this.props.onChange)
+                        this.props.onChange(newSchema, newUiSchema);
+                    }}
+                  />
                 </div>
               ),
             },
@@ -216,7 +215,7 @@ class JsonSchemaFormEditor extends React.Component<Props, State> {
                     <ModalBody>
                       <div className='editor-container'>
                         <ErrorBoundary
-                          onErr={() => {}}
+                          onErr={() => { }}
                           errMessage={'Error parsing JSON Schema Form output'}
                         >
                           <h4>Output Data</h4>
@@ -274,13 +273,13 @@ class JsonSchemaFormEditor extends React.Component<Props, State> {
                         placeholder={
                           this.props.schema
                             ? (() => {
-                                try {
-                                  return JSON.parse(this.props.schema);
-                                } catch (e) {
-                                  console.error(e);
-                                  return {};
-                                }
-                              })()
+                              try {
+                                return JSON.parse(this.props.schema);
+                              } catch (e) {
+                                console.error(e);
+                                return {};
+                              }
+                            })()
                             : {}
                         }
                         locale={locale}
@@ -330,7 +329,7 @@ class JsonSchemaFormEditor extends React.Component<Props, State> {
                     height: this.props.height ? this.props.height : '500px',
                   }}
                 >
-                  <ErrorBoundary onErr={() => {}}>
+                  <ErrorBoundary onErr={() => { }}>
                     <PredefinedGallery
                       schema={this.props.schema}
                       uischema={this.props.uischema}
